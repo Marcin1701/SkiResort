@@ -1,4 +1,4 @@
-package pl.skiresort.demo;
+package pl.skiresort;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
