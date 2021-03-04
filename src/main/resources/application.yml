@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: 'jdbc:postgresql://localhost:5432/Ski_Resort'
+    username: 'postgres'
+    password: 'root'
+  main:
+    banner-mode: off
