@@ -4,3 +4,5 @@ Simple representation of Ski Resort.
 Project is created with:
 * JAVA
 * Spring Framework
+* Maven
+* Flyway
