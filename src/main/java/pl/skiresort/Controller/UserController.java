@@ -33,9 +33,7 @@ class UserController {
     @PostMapping(value = "/users")
     ResponseEntity<User> createUser(@RequestBody @Valid User newUser) {
         logger.info("New User!");
-
         User result = repository.save(newUser);
-
         return ResponseEntity.created(URI.create("/" + result.getId())).body(result);
     }
 }

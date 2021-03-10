@@ -1,5 +1,7 @@
 package pl.skiresort.Model;
 
+import pl.skiresort.Model.User;
+
 import java.util.List;
 import java.util.Optional;
 

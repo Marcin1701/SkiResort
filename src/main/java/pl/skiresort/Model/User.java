@@ -3,35 +3,33 @@ package pl.skiresort.Model;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 
 @Entity
 @Table(name= "clients")
 public class User {
 
-    @Column(name= "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name= "name")
     @NotBlank(message = "Your name must not be empty!")
     private String name;
 
-    @Column(name= "surname")
     @NotBlank(message = "Your surname must not be empty!")
     private String surname;
 
-    @Column(name= "age")
     @NotNull(message = "Your age must not be empty!")
     private int age;
 
-    @Column(name = "email")
     private String email;
 
-    public User() {
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "card_pass_id", referencedColumnName = "id")
+    private CardPass cardPass;
 
-    }
+    public User() {}
 
     public int getId() {
         return id;
@@ -65,11 +63,11 @@ public class User {
         this.age = age;
     }
 
-    String getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    void setEmail(final String email) {
+    public void setEmail(final String email) {
         this.email = email;
     }
 }
