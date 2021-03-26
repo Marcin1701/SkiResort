@@ -30,6 +30,14 @@ public class UserWriteModel {
         this.cardPass = cardPass;
     }
 
+    public UserWriteModel(final UserWriteModel current) {
+        this.name = current.name;
+        this.surname = current.surname;
+        this.age = current.age;
+        this.email = current.email;
+        this.cardPass = current.cardPass;
+    }
+
     public String getName() {
         return name;
     }

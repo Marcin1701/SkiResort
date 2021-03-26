@@ -11,6 +11,8 @@
     <!--/*@thymesVar id="user" type="pl.skiresort.Model.Projection.UserWriteModel"*/-->
     <form action="#" method="post" th:action="@{/users}" th:object="${user}">
         <fieldset>
+            <h3 th:if="${errorEmail} != null" th:text="${errorEmail}"></h3>
+            <h3 th:if="${success} != null" th:text="${success}"></h3>
             <legend>Dodaj nowego użytkownika:</legend>
             <label>
                 <input type="text" th:field="${user.name}" />
