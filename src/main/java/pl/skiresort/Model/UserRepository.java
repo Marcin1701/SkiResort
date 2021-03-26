@@ -12,4 +12,8 @@ public interface UserRepository {
     Optional<User> findById(Integer i);
 
     User save(User entity);
+
+    boolean existsById(Integer id);
+
+    boolean existsByEmail(String email);
 }

@@ -29,13 +29,27 @@ public class User {
     @JoinColumn(name = "card_pass_id", referencedColumnName = "id")
     private CardPass cardPass;
 
-    public User() {}
+    public User() {
+
+    }
+
+    public User(String name, String surname, int age, String email) {
+        this(name, surname, age, email, null);
+    }
+
+    public User(String name, String surname, int age, String email, CardPass cardPass) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.email = email;
+        this.cardPass = cardPass;
+    }
 
     public int getId() {
         return id;
     }
 
-    public void setId(final int id) {
+    void setId(final int id) {
         this.id = id;
     }
 

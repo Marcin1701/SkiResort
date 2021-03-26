@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm.min.css">
+    <title>User Controller</title>
+</head>
+<body>
+    <!--/*@thymesVar id="user" type="pl.skiresort.Model.Projection.UserWriteModel"*/-->
+    <form action="#" method="post" th:action="@{/users}" th:object="${user}">
+        <fieldset>
+            <legend>Dodaj nowego użytkownika:</legend>
+            <label>
+                <input type="text" th:field="${user.name}" />
+            </label>
+            <label>
+                <input type="text" th:field="${user.surname}" />
+            </label>
+            <label>
+                <input type="number" th:field="${user.age}" />
+            </label>
+            <label>
+                <input type="text" th:field="${user.email}" />
+            </label>
+        </fieldset>
+        <button type="submit">Dodaj</button>
+    </form>
+</body>
+</html>
