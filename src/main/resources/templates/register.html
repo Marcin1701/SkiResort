@@ -5,32 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm.min.css">
-    <title>User Controller</title>
+    <title>SR: Register</title>
 </head>
 <body>
     <!--/*@thymesVar id="user" type="pl.skiresort.Model.Projection.UserWriteModel"*/-->
-    <form action="#" method="post" th:action="@{/users}" th:object="${user}">
+    <form action="#" method="post" th:action="@{/register}" th:object="${user}">
         <fieldset>
             <h3 th:if="${errorEmail} != null" th:text="${errorEmail}"></h3>
             <h3 th:if="${success} != null" th:text="${success}"></h3>
-            <legend>Dodaj nowego użytkownika:</legend>
-            <label>Imię:
+            <legend>Add your account here:</legend>
+            <label>Name:
                 <input type="text" th:field="${user.name}" />
             </label>
-            <label>Nazwisko:
+            <label>Surname:
                 <input type="text" th:field="${user.surname}" />
             </label>
-            <label>Wiek:
+            <label>Age:
                 <input type="number" th:field="${user.age}" />
             </label>
             <label>Email:
                 <input type="text" th:field="${user.email}" />
             </label>
-            <label>Hasło:
+            <label>Password:
                 <input type="password" th:field="${user.password}" />
             </label>
         </fieldset>
-        <button type="submit">Dodaj</button>
+        <button type="submit">Create</button>
     </form>
 </body>
 </html>

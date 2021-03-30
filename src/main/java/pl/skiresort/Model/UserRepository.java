@@ -1,5 +1,6 @@
 package pl.skiresort.Model;
 
+import org.springframework.data.repository.query.Param;
 import pl.skiresort.Model.User;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface UserRepository {
     boolean existsById(Integer id);
 
     boolean existsByEmail(String email);
+
+    Optional<User> findByEmailAndPassword(String email, String password);
 }

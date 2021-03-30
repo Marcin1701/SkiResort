@@ -28,14 +28,9 @@ public class RegistrationService {
            return null;
         }
         // Encode password
-        entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+        //entity.setPassword(passwordEncoder.encode(entity.getPassword()));
         // Save encoded in database
         userRepository.save(entity);
         return new UserReadModel(entity);
     }
-
-    public boolean existsByEmail(final String email){
-        return userRepository.existsByEmail(email);
-    }
-
 }

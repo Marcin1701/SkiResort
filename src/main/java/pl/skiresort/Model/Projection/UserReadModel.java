@@ -12,11 +12,14 @@ public class UserReadModel {
 
     private String email;
 
+    private String password;
+
     public UserReadModel(User user) {
         this.name = user.getName();
         this.surname = user.getSurname();
         this.age = user.getAge();
         this.email = user.getEmail();
+        this.password = user.getPassword();
     }
 
     public String getName() {
@@ -45,6 +48,14 @@ public class UserReadModel {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(final String password) {
+        this.password = password;
     }
 
     void setEmail(final String email) {

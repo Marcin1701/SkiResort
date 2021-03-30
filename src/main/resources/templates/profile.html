@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SR: Profile</title>
+    <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm.min.css">
+    <style>
+        .profileStyle {
+            color: black;
+            margin-left: 50%;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend class="profileStyle">Your profile:</legend>
+                <fieldset>
+                    <legend>Name:</legend><div th:text="${user.name}"></div>
+                </fieldset>
+                <fieldset>
+                    <legend>Surname:</legend><div th:text="${user.surname}"></div>
+                </fieldset>
+                <fieldset>
+                    <legend>Age:</legend><div th:text="${user.age}"></div>
+                </fieldset>
+                <fieldset>
+                    <legend>Email:</legend><div th:text="${user.email}"></div>
+                </fieldset>
+    </fieldset>
+</body>
+</html>

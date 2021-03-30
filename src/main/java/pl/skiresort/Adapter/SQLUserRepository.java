@@ -17,5 +17,9 @@ interface SQLUserRepository extends UserRepository, JpaRepository<User, Integer>
     Optional<User> findById(@Param("id") Integer i);
 
     @Override
+    @Query(nativeQuery = true, value = "select * from clients c where email=:email and password=:password")
+    Optional<User> findByEmailAndPassword(@Param("email") String e, @Param("password") String p);
+
+    @Override
     boolean existsByEmail(String email);
 }

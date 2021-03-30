@@ -3,6 +3,7 @@ package pl.skiresort.Model.Projection;
 import pl.skiresort.Model.CardPass;
 import pl.skiresort.Model.User;
 
+// DTO
 public class UserWriteModel {
 
     private String name;
@@ -20,6 +21,14 @@ public class UserWriteModel {
 
     public UserWriteModel() {
 
+    }
+
+    public UserWriteModel(final String name, final String surname, final int age, final String email, final String password) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.email = email;
+        this.password = password;
     }
 
     public void setName(final String name) {
