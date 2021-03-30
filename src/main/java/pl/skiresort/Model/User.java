@@ -23,6 +23,9 @@ public class User {
     @NotNull(message = "Your age must not be empty!")
     private int age;
 
+    @NotNull(message = "Your password must not be empty!")
+    private String password;
+
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -33,16 +36,17 @@ public class User {
 
     }
 
-    public User(String name, String surname, int age, String email) {
-        this(name, surname, age, email, null);
+    public User(String name, String surname, int age, String email, String password) {
+        this(name, surname, age, email, password, null);
     }
 
-    public User(String name, String surname, int age, String email, CardPass cardPass) {
+    public User(String name, String surname, int age, String email, String password, CardPass cardPass) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.email = email;
         this.cardPass = cardPass;
+        this.password = password;
     }
 
     public int getId() {
@@ -51,6 +55,14 @@ public class User {
 
     void setId(final int id) {
         this.id = id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(final String password) {
+        this.password = password;
     }
 
     public String getName() {
@@ -84,4 +96,6 @@ public class User {
     public void setEmail(final String email) {
         this.email = email;
     }
+
+
 }

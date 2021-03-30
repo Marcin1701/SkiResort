@@ -6,18 +6,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.skiresort.Logic.UserService;
+import pl.skiresort.Logic.RegistrationService;
 import pl.skiresort.Model.Projection.UserWriteModel;
-import pl.skiresort.Model.User;
 
 @Controller
 @RequestMapping("/users")
 public class RegistrationController {
 
-    private final UserService userService;
+    private final RegistrationService registrationService;
 
-    public RegistrationController(final UserService userService) {
-        this.userService = userService;
+    public RegistrationController(final RegistrationService registrationService) {
+        this.registrationService = registrationService;
     }
 
     @GetMapping
@@ -29,12 +28,9 @@ public class RegistrationController {
     @PostMapping
     String addUser(@ModelAttribute("users") UserWriteModel current, Model model) {
         // TODO JUNIT
-        if (userService.existsByEmail(current.getEmail())){
-            model.addAttribute("errorEmail", "Oops! Your email has been taken!");
-            model.addAttribute("user", new UserWriteModel(current));
-            return "users";
-        }
-        userService.save(new User(current.getName(), current.getSurname(), current.getAge(), current.getEmail()));
+        // Sprawdzenie adresu email !! TODO
+
+        registrationService.save(current);
         model.addAttribute("user", new UserWriteModel());
         model.addAttribute("success", "You have created your new account!");
         model.addAttribute("errorEmail", null);

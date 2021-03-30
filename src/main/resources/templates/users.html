@@ -14,17 +14,20 @@
             <h3 th:if="${errorEmail} != null" th:text="${errorEmail}"></h3>
             <h3 th:if="${success} != null" th:text="${success}"></h3>
             <legend>Dodaj nowego użytkownika:</legend>
-            <label>
+            <label>Imię:
                 <input type="text" th:field="${user.name}" />
             </label>
-            <label>
+            <label>Nazwisko:
                 <input type="text" th:field="${user.surname}" />
             </label>
-            <label>
+            <label>Wiek:
                 <input type="number" th:field="${user.age}" />
             </label>
-            <label>
+            <label>Email:
                 <input type="text" th:field="${user.email}" />
+            </label>
+            <label>Hasło:
+                <input type="password" th:field="${user.password}" />
             </label>
         </fieldset>
         <button type="submit">Dodaj</button>

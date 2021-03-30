@@ -1,6 +1,7 @@
 package pl.skiresort.Model.Projection;
 
 import pl.skiresort.Model.CardPass;
+import pl.skiresort.Model.User;
 
 public class UserWriteModel {
 
@@ -12,69 +13,64 @@ public class UserWriteModel {
 
     private String email;
 
+    private String password;
+
     private CardPass cardPass;
+
 
     public UserWriteModel() {
 
-    }
-
-    UserWriteModel(final String name, final String surname, final int age, final String email) {
-        this(name, surname, age, email, null);
-    }
-
-    UserWriteModel(final String name, final String surname, final int age, final String email, final CardPass cardPass) {
-        this.name = name;
-        this.surname = surname;
-        this.age = age;
-        this.email = email;
-        this.cardPass = cardPass;
-    }
-
-    public UserWriteModel(final UserWriteModel current) {
-        this.name = current.name;
-        this.surname = current.surname;
-        this.age = current.age;
-        this.email = current.email;
-        this.cardPass = current.cardPass;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(final String name) {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getName() {
+        return name;
     }
 
-    public void setSurname(final String surname) {
-        this.surname = surname;
+    public String getSurname() {
+        return surname;
     }
 
     public int getAge() {
         return age;
     }
 
-    public void setAge(final int age) {
-        this.age = age;
-    }
-
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(final String email) {
-        this.email = email;
+    public String getPassword() {
+        return password;
     }
 
     public CardPass getCardPass() {
         return cardPass;
     }
 
+    public void setSurname(final String surname) {
+        this.surname = surname;
+    }
+
+    public void setAge(final int age) {
+        this.age = age;
+    }
+
+    public void setEmail(final String email) {
+        this.email = email;
+    }
+
     public void setCardPass(final CardPass cardPass) {
         this.cardPass = cardPass;
+    }
+
+    public void setPassword(final String password) {
+        this.password = password;
+    }
+
+    public User toUser() {
+        return new User(name, surname, age, email, password);
     }
 }
