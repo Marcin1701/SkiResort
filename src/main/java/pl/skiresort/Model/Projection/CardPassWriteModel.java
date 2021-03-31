@@ -1,16 +1,11 @@
-package pl.skiresort.Model;
+package pl.skiresort.Model.Projection;
 
+import pl.skiresort.Model.CardPass;
+import pl.skiresort.Model.User;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name="card_pass")
-public class CardPass {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+public class CardPassWriteModel {
 
     private Date start;
 
@@ -18,22 +13,15 @@ public class CardPass {
 
     private int level;
 
-    @OneToOne(mappedBy = "cardPass")
     private User user;
 
-    public CardPass(final Date start, final Date end, final int level, final User user) {
+    public CardPassWriteModel() {
+    }
+
+    public CardPassWriteModel(final Date start, final Date end, final int level) {
         this.start = start;
         this.end = end;
         this.level = level;
-        this.user = user;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(final int id) {
-        this.id = id;
     }
 
     public Date getStart() {
@@ -60,11 +48,15 @@ public class CardPass {
         this.level = level;
     }
 
-    User getUser() {
+    public User getUser() {
         return user;
     }
 
-    void setUser(final User user) {
+    public void setUser(final User user) {
         this.user = user;
+    }
+
+    public CardPass toCardPass() {
+        return new CardPass(this.start, this.end, this.level, this.user);
     }
 }
