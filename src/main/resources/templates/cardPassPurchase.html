@@ -8,21 +8,22 @@
     <title>SR: Card Pass</title>
 </head>
 <body>
-<!--/*@thymesVar id="user" type="pl.skiresort.Model.Projection.CardPassWriteModel"*/-->
-<form action="#" method="post" th:action="@{/cardPass}" th:object="${cardPass}">
+
+<!--/*@thymesVar id="card" type="pl.skiresort.Model.Projection.CardPassWriteModel"*/-->
+<form action="#" method="post" th:action="@{/cardPass/{id}(id=${user.id})}" th:object="${card}">
     <fieldset>
         <legend>Select your card pass:</legend>
         <label>Start date of your card pass:
-            <input type="datetime-local" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" th:field="${cardPass.start}" />
+            <input name="start" type="datetime-local" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" />
         </label>
         <label>End date of your card pass:
-            <input type="datetime-local" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" th:field="${cardPass.end}" />
+            <input name="end" type="datetime-local" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" />
         </label>
         <label>Level of your card pass:
-            <input type="number" th:field="${cardPass.level}" />
+            <input type="number" th:field="${card.level}" />
         </label>
     </fieldset>
     <button type="submit">Buy</button>
-</form>
+</form></form>
 </body>
 </html>

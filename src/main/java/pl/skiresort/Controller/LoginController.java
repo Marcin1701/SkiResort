@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.skiresort.Logic.LoginService;
+import pl.skiresort.Model.Projection.UserReadModel;
 import pl.skiresort.Model.Projection.UserWriteModel;
 
 @Controller
@@ -33,8 +34,8 @@ public class LoginController {
     String loginUser(@ModelAttribute("users") UserWriteModel userWriteModel, Model model){
         var entity = loginService.loginUser(userWriteModel);
         if (entity != null) {
-            model.addAttribute("user", new UserWriteModel(
-                    entity.getName(), entity.getSurname(), entity.getAge(), entity.getEmail(), entity.getPassword()));
+            model.addAttribute("user", new UserReadModel(
+                    entity.getId(), entity.getName(), entity.getSurname(), entity.getAge(), entity.getEmail(), entity.getPassword()));
             return "profile";
         }
         return "login";

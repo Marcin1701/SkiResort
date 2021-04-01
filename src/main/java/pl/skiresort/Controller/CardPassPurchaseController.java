@@ -2,17 +2,12 @@ package pl.skiresort.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.skiresort.Logic.CardPassService;
+import pl.skiresort.Logic.LoginService;
 import pl.skiresort.Model.Projection.CardPassWriteModel;
 import pl.skiresort.Model.Projection.UserWriteModel;
 import pl.skiresort.Model.User;
-
-import javax.validation.Valid;
-import java.util.Objects;
 
 @Controller
 @RequestMapping("/cardPass")
@@ -20,25 +15,26 @@ public class CardPassPurchaseController {
 
     private final CardPassService cardPassService;
 
-    CardPassPurchaseController(final CardPassService cardPassService) {
+    private final LoginService loginService;
+
+    CardPassPurchaseController(final CardPassService cardPassService, final LoginService loginService) {
         this.cardPassService = cardPassService;
+        this.loginService = loginService;
     }
 
-    @GetMapping
-    public String getCardPassPage(Model model) {
-        model.addAttribute("cardPass", new CardPassWriteModel());
+    @GetMapping("/{id}")
+    public String getCardPassPage(@PathVariable int id, Model model) {
+        model.addAttribute("user", loginService.findUser(id));
+        model.addAttribute("card", new CardPassWriteModel());
         return "cardPassPurchase";
     }
 
-    @PostMapping
-    public String buyCardPass(@ModelAttribute("cardPass") @Valid CardPassWriteModel current, Model model){
-        if (model.getAttribute("user") != null){
-            current.setUser(((UserWriteModel) Objects.requireNonNull(model.getAttribute("user"))).toUser());
-            cardPassService.addCardPass(current);
-            return "cardPassPurchase";
-        }
-        else {
-            return "login";
-        }
+    @PostMapping("/{id}")
+    public String buyCardPass(@ModelAttribute("card") CardPassWriteModel current,
+                              @PathVariable int id){
+       current.setUser(loginService.findUser(id));
+
+       cardPassService.addCardPass(current);
+       return "profile";
     }
 }

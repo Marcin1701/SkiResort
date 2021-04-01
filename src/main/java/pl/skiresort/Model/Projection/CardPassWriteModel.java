@@ -1,15 +1,19 @@
 package pl.skiresort.Model.Projection;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.skiresort.Model.CardPass;
 import pl.skiresort.Model.User;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class CardPassWriteModel {
 
-    private Date start;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDate start;
 
-    private Date end;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDate end;
 
     private int level;
 
@@ -18,25 +22,26 @@ public class CardPassWriteModel {
     public CardPassWriteModel() {
     }
 
-    public CardPassWriteModel(final Date start, final Date end, final int level) {
+    public CardPassWriteModel(final LocalDate start, final LocalDate end, final int level, final User user) {
         this.start = start;
         this.end = end;
         this.level = level;
+        this.user = user;
     }
 
-    public Date getStart() {
+    public LocalDate getStart() {
         return start;
     }
 
-    public void setStart(final Date start) {
+    public void setStart(final LocalDate start) {
         this.start = start;
     }
 
-    public Date getEnd() {
+    public LocalDate getEnd() {
         return end;
     }
 
-    public void setEnd(final Date end) {
+    public void setEnd(final LocalDate end) {
         this.end = end;
     }
 

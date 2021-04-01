@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class CardPassReadModel {
 
+    private int id;
+
     private Date start;
 
     private Date end;

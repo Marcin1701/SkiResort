@@ -4,17 +4,29 @@ import pl.skiresort.Model.User;
 
 public class UserReadModel {
 
-    private String name;
+    private final int id;
 
-    private String surname;
+    private final String name;
 
-    private int age;
+    private final String surname;
 
-    private String email;
+    private final int age;
 
-    private String password;
+    private final String email;
+
+    private final String password;
+
+    public UserReadModel(final int id, final String name, final String surname, final int age, final String email, final String password) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.email = email;
+        this.password = password;
+    }
 
     public UserReadModel(User user) {
+        this.id = user.getId();
         this.name = user.getName();
         this.surname = user.getSurname();
         this.age = user.getAge();
@@ -22,28 +34,20 @@ public class UserReadModel {
         this.password = user.getPassword();
     }
 
-    public String getName() {
-        return name;
+    public int getId() {
+        return id;
     }
 
-    void setName(final String name) {
-        this.name = name;
+    public String getName() {
+        return name;
     }
 
     public String getSurname() {
         return surname;
     }
 
-    void setSurname(final String surname) {
-        this.surname = surname;
-    }
-
     public int getAge() {
         return age;
-    }
-
-    void setAge(final int age) {
-        this.age = age;
     }
 
     public String getEmail() {
@@ -52,13 +56,5 @@ public class UserReadModel {
 
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(final String password) {
-        this.password = password;
-    }
-
-    void setEmail(final String email) {
-        this.email = email;
     }
 }

@@ -2,7 +2,8 @@ package pl.skiresort.Model;
 
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="card_pass")
@@ -12,20 +13,24 @@ public class CardPass {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private Date start;
+    private LocalDate start;
 
-    private Date end;
+    private LocalDate end;
 
     private int level;
 
     @OneToOne(mappedBy = "cardPass")
     private User user;
 
-    public CardPass(final Date start, final Date end, final int level, final User user) {
+    public CardPass(final LocalDate start, final LocalDate end, final int level, final User user) {
         this.start = start;
         this.end = end;
         this.level = level;
         this.user = user;
+    }
+
+    public CardPass() {
+
     }
 
     public int getId() {
@@ -36,19 +41,19 @@ public class CardPass {
         this.id = id;
     }
 
-    public Date getStart() {
+    public LocalDate getStart() {
         return start;
     }
 
-    public void setStart(final Date start) {
+    public void setStart(final LocalDate start) {
         this.start = start;
     }
 
-    public Date getEnd() {
+    public LocalDate getEnd() {
         return end;
     }
 
-    public void setEnd(final Date end) {
+    public void setEnd(final LocalDate end) {
         this.end = end;
     }
 
