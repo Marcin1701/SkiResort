@@ -33,7 +33,6 @@ public class CardPassPurchaseController {
     public String buyCardPass(@ModelAttribute("card") CardPassWriteModel current,
                               @PathVariable int id){
        current.setUser(loginService.findUser(id));
-
        cardPassService.addCardPass(current);
        return "profile";
     }
