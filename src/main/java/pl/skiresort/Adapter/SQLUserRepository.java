@@ -22,4 +22,8 @@ interface SQLUserRepository extends UserRepository, JpaRepository<User, Integer>
 
     @Override
     boolean existsByEmail(String email);
+
+    default Integer cos() {
+        return 1;
+    }
 }

@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.skiresort.Logic.CardPassService;
 import pl.skiresort.Logic.LoginService;
 import pl.skiresort.Model.Projection.CardPassWriteModel;
-import pl.skiresort.Model.Projection.UserWriteModel;
-import pl.skiresort.Model.User;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/cardPass")
@@ -34,6 +34,7 @@ public class CardPassPurchaseController {
                               @PathVariable int id){
        current.setUser(loginService.findUser(id));
        cardPassService.addCardPass(current);
+       loginService.addUserCardPass(id, current.toCardPass());
        return "profile";
     }
 }

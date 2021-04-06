@@ -5,7 +5,6 @@ import pl.skiresort.Model.CardPass;
 import pl.skiresort.Model.User;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class CardPassWriteModel {
 

@@ -3,7 +3,6 @@ package pl.skiresort.Model;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 
 @Entity
@@ -97,5 +96,15 @@ public class User {
         this.email = email;
     }
 
+    public void setAge(final int age) {
+        this.age = age;
+    }
 
+    public CardPass getCardPass() {
+        return cardPass;
+    }
+
+    public void setCardPass(final CardPass cardPass) {
+        this.cardPass = cardPass;
+    }
 }

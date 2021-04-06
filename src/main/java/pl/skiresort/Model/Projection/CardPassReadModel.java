@@ -1,38 +1,38 @@
 package pl.skiresort.Model.Projection;
 
+import pl.skiresort.Model.CardPass;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 public class CardPassReadModel {
 
     private int id;
 
-    private Date start;
+    private final LocalDate startDate;
 
-    private Date end;
+    private final LocalDate endDate;
 
-    private int level;
+    private final int level;
 
-    public Date getStart() {
-        return start;
+    public CardPassReadModel(final CardPass cardPass) {
+        this.endDate = cardPass.getEnd();
+        this.startDate = cardPass.getStart();
+        this.level = cardPass.getLevel();
+
     }
 
-    public void setStart(final Date start) {
-        this.start = start;
+    public CardPassReadModel(final LocalDate startDate, final LocalDate endDate, final int level) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.level = level;
     }
 
-    public Date getEnd() {
-        return end;
-    }
-
-    public void setEnd(final Date end) {
-        this.end = end;
+    public int getId() {
+        return id;
     }
 
     public int getLevel() {
         return level;
-    }
-
-    public void setLevel(final int level) {
-        this.level = level;
     }
 }

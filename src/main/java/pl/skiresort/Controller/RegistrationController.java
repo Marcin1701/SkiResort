@@ -40,5 +40,4 @@ public class RegistrationController {
         model.addAttribute("errorEmail", null);
         return "register";
     }
-
 }

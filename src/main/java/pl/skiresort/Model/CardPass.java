@@ -1,7 +1,10 @@
 package pl.skiresort.Model;
 
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -13,8 +16,12 @@ public class CardPass {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    //@NotBlank(message = "Chose your start date!")
+    @Column(name = "start_date")
     private LocalDate start;
 
+    //@NotBlank(message = "Chose your end date!")
+    @Column(name = "end_date")
     private LocalDate end;
 
     private int level;
@@ -65,11 +72,11 @@ public class CardPass {
         this.level = level;
     }
 
-    User getUser() {
+    public User getUser() {
         return user;
     }
 
-    void setUser(final User user) {
+    public void setUser(final User user) {
         this.user = user;
     }
 }
