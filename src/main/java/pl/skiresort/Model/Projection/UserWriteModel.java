@@ -3,21 +3,26 @@ package pl.skiresort.Model.Projection;
 import pl.skiresort.Model.CardPass;
 import pl.skiresort.Model.User;
 
+import javax.validation.constraints.NotBlank;
+
 // DTO
 public class UserWriteModel {
 
+    @NotBlank(message="Your name must not be empty!")
     private String name;
 
+    @NotBlank(message = "Your surname must not be empty!")
     private String surname;
 
     private int age;
 
+    @NotBlank(message = "Your email must not be empty!")
     private String email;
 
+    @NotBlank(message = "Your password must not be empty!")
     private String password;
 
     private CardPass cardPass;
-
 
     public UserWriteModel() {
 

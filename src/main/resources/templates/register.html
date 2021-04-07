@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm.min.css">
     <title>SR: Register</title>
+    <style>
+        .Bdc\(red\) {
+            border-color: red !important;
+        }
+        .C\(red\) {
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <!--/*@thymesVar id="user" type="pl.skiresort.Model.Projection.UserWriteModel"*/-->
@@ -14,20 +22,21 @@
             <h3 th:if="${errorEmail} != null" th:text="${errorEmail}"></h3>
             <h3 th:if="${success} != null" th:text="${success}"></h3>
             <legend>Add your account here:</legend>
+            <p class="C(red)" th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
             <label>Name:
-                <input type="text" th:field="${user.name}" />
+                <input type="text" th:field="${user.name}" th:errorclass="'Bdc(red)'"/>
             </label>
             <label>Surname:
-                <input type="text" th:field="${user.surname}" />
+                <input type="text" th:field="${user.surname}" th:errorclass="'Bdc(red)'"/>
             </label>
             <label>Age:
-                <input type="number" th:field="${user.age}" />
+                <input type="number" th:field="${user.age}" th:errorclass="'Bdc(red)'"/>
             </label>
             <label>Email:
-                <input type="text" th:field="${user.email}" />
+                <input type="text" th:field="${user.email}" th:errorclass="'Bdc(red)'"/>
             </label>
             <label>Password:
-                <input type="password" th:field="${user.password}" />
+                <input type="password" th:field="${user.password}" th:errorclass="'Bdc(red)'"/>
             </label>
         </fieldset>
         <button type="submit">Create</button>

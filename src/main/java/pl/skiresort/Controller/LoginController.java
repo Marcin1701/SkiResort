@@ -4,10 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.skiresort.Logic.UserService;
 import pl.skiresort.Model.Projection.UserReadModel;
 import pl.skiresort.Model.Projection.UserWriteModel;
@@ -25,7 +22,8 @@ public class LoginController {
     }
 
     @GetMapping
-    String showLoginPage(Model model) {
+    String showLoginPage(@CookieValue(name="purchaseMessage", defaultValue = "No cookie") String message, Model model) {
+        model.addAttribute("message", message);
         model.addAttribute("user", new UserWriteModel());
         return "login";
     }

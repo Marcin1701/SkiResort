@@ -10,9 +10,8 @@
 <body>
 
 <!--/*@thymesVar id="card" type="pl.skiresort.Model.Projection.CardPassWriteModel"*/-->
-<form action="#" method="post" th:action="@{/cardPass/{id}(id=${user.id})}" th:object="${card}">
+<form action="#" method="post" th:if="${user.id} != null" th:action="@{/cardPass/{id}(id=${user.id})}" th:object="${card}">
     <fieldset>
-        <legend style="color: red" th:if="${purchaseMessage} != null" th:text="${purchaseMessage}"></legend>
         <legend>Select your card pass:</legend>
         <label>Start date of your card pass:
             <input name="start" type="datetime-local" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" />

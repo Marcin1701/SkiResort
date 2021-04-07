@@ -1,5 +1,7 @@
 package pl.skiresort.Controller;
 
+import org.springframework.http.ResponseCookie;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -7,6 +9,8 @@ import pl.skiresort.Logic.CardPassService;
 import pl.skiresort.Logic.UserService;
 import pl.skiresort.Model.Projection.CardPassWriteModel;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @Controller
@@ -22,11 +26,6 @@ public class CardPassPurchaseController {
         this.userService = userService;
     }
 
-    @GetMapping
-    public String cardPassPage() {
-        return "cardPassPurchase";
-    }
-
     @GetMapping("/{id}")
     public String getCardPassPage(@PathVariable int id, Model model) {
         model.addAttribute("user", userService.findUser(id));
@@ -37,14 +36,13 @@ public class CardPassPurchaseController {
     @PostMapping("/{id}")
     public String buyCardPass(@ModelAttribute("card") CardPassWriteModel current,
                               @PathVariable int id,
-                              Model model){
+                              Model model,
+                              HttpServletResponse response){
        current.setUser(userService.findUser(id));
-       //cardPassService.addCardPass(current);
        if (userService.addUserCardPass(id, current.toCardPass())) {
-           model.addAttribute("purchaseMessage", "You have successfully purchased your card pass!");
-       } else {
-           model.addAttribute("purchaseMessage", "There was an error processing your purchase - check your credentials");
+           return "cardPassInfo";
        }
-       return "cardPassPurchase";
+
+       return "cardPassInfo";
     }
 }
