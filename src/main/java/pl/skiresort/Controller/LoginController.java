@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.skiresort.Logic.LoginService;
+import pl.skiresort.Logic.UserService;
 import pl.skiresort.Model.Projection.UserReadModel;
 import pl.skiresort.Model.Projection.UserWriteModel;
 
@@ -16,12 +16,12 @@ import pl.skiresort.Model.Projection.UserWriteModel;
 @RequestMapping("/login")
 public class LoginController {
 
-    private final LoginService loginService;
+    private final UserService userService;
 
     public static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-    LoginController(final LoginService loginService) {
-        this.loginService = loginService;
+    LoginController(final UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping
@@ -32,7 +32,7 @@ public class LoginController {
 
     @PostMapping
     String loginUser(@ModelAttribute("users") UserWriteModel userWriteModel, Model model){
-        var entity = loginService.loginUser(userWriteModel);
+        var entity = userService.loginUser(userWriteModel);
         if (entity != null) {
             model.addAttribute("user", new UserReadModel(
                     entity.getId(), entity.getName(), entity.getSurname(), entity.getAge(), entity.getEmail(), entity.getPassword()));

@@ -1,7 +1,5 @@
 package pl.skiresort.Logic;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.skiresort.Model.CardPass;
 import pl.skiresort.Model.Projection.CardPassReadModel;
@@ -10,18 +8,12 @@ import pl.skiresort.Model.Projection.UserWriteModel;
 import pl.skiresort.Model.User;
 import pl.skiresort.Model.UserRepository;
 
-import java.util.Optional;
-
 @Service
-public class LoginService {
+public class UserService {
 
     private final UserRepository userRepository;
 
-    // Password encryption
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    LoginService(final UserRepository userRepository) {
+    UserService(final UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -60,4 +52,15 @@ public class LoginService {
         }
     }
 
+    public UserReadModel save(final UserWriteModel user){
+        var entity = user.toUser();
+        if (userRepository.existsByEmail(entity.getEmail())) {
+            return null;
+        }
+        // Encode password
+        //entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+        // Save encoded in database
+        userRepository.save(entity);
+        return new UserReadModel(entity);
+    }
 }

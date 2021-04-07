@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.skiresort.Logic.RegistrationService;
+import pl.skiresort.Logic.UserService;
 import pl.skiresort.Model.Projection.UserWriteModel;
 
 @Controller
 @RequestMapping("/register")
 public class RegistrationController {
 
-    private final RegistrationService registrationService;
+    private final UserService userService;
 
-    public static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+    public static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
 
-    public RegistrationController(final RegistrationService registrationService) {
-        this.registrationService = registrationService;
+    RegistrationController(final UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping
@@ -34,7 +34,7 @@ public class RegistrationController {
         // TODO JUNIT
         // Sprawdzenie adresu email !! TODO
         logger.info("New user creation!");
-        registrationService.save(current);
+        userService.save(current);
         model.addAttribute("user", new UserWriteModel());
         model.addAttribute("success", "You have created your new account!");
         model.addAttribute("errorEmail", null);
