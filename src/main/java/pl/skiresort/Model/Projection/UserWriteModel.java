@@ -1,8 +1,10 @@
 package pl.skiresort.Model.Projection;
 
+import org.hibernate.validator.constraints.Range;
 import pl.skiresort.Model.CardPass;
 import pl.skiresort.Model.User;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 // DTO
@@ -14,6 +16,7 @@ public class UserWriteModel {
     @NotBlank(message = "Your surname must not be empty!")
     private String surname;
 
+    @Range(min = 1, message="Your age can not be equal 0!")
     private int age;
 
     @NotBlank(message = "Your email must not be empty!")

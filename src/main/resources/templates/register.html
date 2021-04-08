@@ -19,7 +19,7 @@
     <!--/*@thymesVar id="user" type="pl.skiresort.Model.Projection.UserWriteModel"*/-->
     <form action="#" method="post" th:action="@{/register}" th:object="${user}">
         <fieldset>
-            <h3 th:if="${errorEmail} != null" th:text="${errorEmail}"></h3>
+            <h3 class="C(red)" th:if="${errorEmail} != null" th:text="${errorEmail}"></h3>
             <h3 th:if="${success} != null" th:text="${success}"></h3>
             <legend>Add your account here:</legend>
             <p class="C(red)" th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>

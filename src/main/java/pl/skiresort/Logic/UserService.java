@@ -1,5 +1,6 @@
 package pl.skiresort.Logic;
 
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.skiresort.Model.CardPass;
 import pl.skiresort.Model.Projection.CardPassReadModel;
@@ -7,6 +8,8 @@ import pl.skiresort.Model.Projection.UserReadModel;
 import pl.skiresort.Model.Projection.UserWriteModel;
 import pl.skiresort.Model.User;
 import pl.skiresort.Model.UserRepository;
+
+import javax.persistence.EntityExistsException;
 
 @Service
 public class UserService {
@@ -23,9 +26,9 @@ public class UserService {
         return entity.map(UserReadModel::new).orElse(null);
     }
 
+
     public User findUser(int id) {
-        var user = userRepository.findById(id);
-        return user.orElse(null);
+        return userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User does not exist!"));
     }
 
     public boolean addUserCardPass(int id, CardPass cardPass){
@@ -52,11 +55,11 @@ public class UserService {
         }
     }
 
-    public UserReadModel save(final UserWriteModel user){
-        var entity = user.toUser();
-        if (userRepository.existsByEmail(entity.getEmail())) {
-            return null;
+    public UserReadModel save(final UserWriteModel user) {
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new EntityExistsException("User already exist!");
         }
+        var entity = user.toUser();
         // Encode password
         //entity.setPassword(passwordEncoder.encode(entity.getPassword()));
         // Save encoded in database

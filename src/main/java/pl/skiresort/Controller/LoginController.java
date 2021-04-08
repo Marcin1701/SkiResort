@@ -9,6 +9,8 @@ import pl.skiresort.Logic.UserService;
 import pl.skiresort.Model.Projection.UserReadModel;
 import pl.skiresort.Model.Projection.UserWriteModel;
 
+import javax.transaction.Transactional;
+
 @Controller
 @RequestMapping("/login")
 public class LoginController {
@@ -28,6 +30,7 @@ public class LoginController {
         return "login";
     }
 
+    @Transactional
     @PostMapping
     String loginUser(@ModelAttribute("users") UserWriteModel userWriteModel, Model model){
         var entity = userService.loginUser(userWriteModel);

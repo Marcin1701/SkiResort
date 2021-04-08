@@ -4,6 +4,7 @@ import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.skiresort.Logic.CardPassService;
 import pl.skiresort.Logic.UserService;
@@ -36,8 +37,13 @@ public class CardPassPurchaseController {
     @PostMapping("/{id}")
     public String buyCardPass(@ModelAttribute("card") CardPassWriteModel current,
                               @PathVariable int id,
-                              Model model,
-                              HttpServletResponse response){
+                              BindingResult bindingResult,
+                              Model model
+                              )
+    {
+        if (bindingResult.hasErrors()){
+            return "cardPassPurchase";
+        }
        current.setUser(userService.findUser(id));
        if (userService.addUserCardPass(id, current.toCardPass())) {
            return "cardPassInfo";

@@ -2,6 +2,7 @@ package pl.skiresort.Controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,7 +45,15 @@ public class RegistrationController {
         // TODO JUNIT
         // Sprawdzenie adresu email !! TODO
         logger.info("New user creation!");
-        userService.save(current);
+        try {
+            userService.save(current);
+        }
+        catch (UsernameNotFoundException e){
+            logger.error(e.getMessage());
+            model.addAttribute("user", current);
+            return "register";
+        }
+
         model.addAttribute("user", new UserWriteModel());
         model.addAttribute("success", "You have created your new account!");
         model.addAttribute("errorEmail", null);
