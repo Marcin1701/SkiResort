@@ -2,6 +2,9 @@ package pl.skiresort.Controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +27,7 @@ public class LoginController {
     }
 
     @GetMapping
-    String showLoginPage(@CookieValue(name="purchaseMessage", defaultValue = "No cookie") String message, Model model) {
+    String showLoginPage(@CookieValue(name="userId", defaultValue = "No cookie") String message, Model model) {
         model.addAttribute("message", message);
         model.addAttribute("user", new UserWriteModel());
         return "login";
@@ -37,6 +40,11 @@ public class LoginController {
         if (entity != null) {
             model.addAttribute("user", new UserReadModel(
                     entity.getId(), entity.getName(), entity.getSurname(), entity.getAge(), entity.getEmail(), entity.getPassword()));
+            ResponseCookie userCredentialsCookie = ResponseCookie.from("userId", String.valueOf(entity.getId()))
+                    .maxAge(60)
+                    .build();
+            ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, userCredentialsCookie.toString())
+                    .build();
             return "profile";
         }
         return "login";

@@ -32,5 +32,22 @@
                     <legend><a th:href="@{'/cardPass/' + ${user.id}}">Card pass purchase</a></legend>
                 </fieldset>
     </fieldset>
+    <fieldset th:if="${cardPass} != null">
+        <fieldset>
+            <legend>Name:</legend><div th:text="${cardPass}"></div>
+        </fieldset>
+        <fieldset>
+            <legend>Surname:</legend><div th:text="${user.surname}"></div>
+        </fieldset>
+        <fieldset>
+            <legend>Age:</legend><div th:text="${user.age}"></div>
+        </fieldset>
+        <fieldset>
+            <legend>Email:</legend><div th:text="${user.email}"></div>
+        </fieldset>
+        <fieldset>
+            <legend><a th:href="@{'/cardPass/' + ${user.id}}">Card pass purchase</a></legend>
+        </fieldset>
+    </fieldset>
 </body>
 </html>

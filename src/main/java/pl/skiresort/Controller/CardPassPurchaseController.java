@@ -18,12 +18,9 @@ import javax.validation.Valid;
 @RequestMapping("/cardPass")
 public class CardPassPurchaseController {
 
-    private final CardPassService cardPassService;
-
     private final UserService userService;
 
-    CardPassPurchaseController(final CardPassService cardPassService, final UserService userService) {
-        this.cardPassService = cardPassService;
+    CardPassPurchaseController(final UserService userService) {
         this.userService = userService;
     }
 
