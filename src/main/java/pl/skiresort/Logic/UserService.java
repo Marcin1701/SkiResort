@@ -82,4 +82,6 @@ public class UserService {
         userRepository.save(entity);
         return new UserReadModel(entity);
     }
+
+
 }

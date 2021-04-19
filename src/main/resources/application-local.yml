@@ -6,3 +6,13 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 480880383041-30dvefr4iuhh81mn7tinj13n0fvdliih.apps.googleusercontent.com
+            clientSecret: 6Pr_0_SBreo37vVFlhPL4PqJ
+            scope:
+              - email
+              - profile

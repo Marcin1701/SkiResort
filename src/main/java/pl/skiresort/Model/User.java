@@ -31,6 +31,9 @@ public class User {
     @JoinColumn(name = "card_pass_id", referencedColumnName = "id")
     private CardPass cardPass;
 
+    @Enumerated(EnumType.STRING)
+    private Provider provider;
+
     public User() {
 
     }
@@ -106,5 +109,13 @@ public class User {
 
     public void setCardPass(final CardPass cardPass) {
         this.cardPass = cardPass;
+    }
+
+    public Provider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(final Provider provider) {
+        this.provider = provider;
     }
 }
