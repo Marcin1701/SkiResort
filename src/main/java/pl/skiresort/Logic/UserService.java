@@ -35,6 +35,13 @@ public class UserService {
         return null;
     }
 
+    public UserReadModel findUserByEmail(String email) {
+        return new UserReadModel(
+                userRepository.findByEmail(email)
+                        .orElseThrow(
+                                ()-> new UsernameNotFoundException("User does not exist!")));
+    }
+
     public User findUser(int id) {
         return userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User does not exist!"));
     }
