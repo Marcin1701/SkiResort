@@ -26,7 +26,7 @@ class UserServiceTest {
 
         when(mockUserRepository.findById(anyInt())).thenReturn(Optional.empty());
 
-        var testUserService = new UserService(mockUserRepository);
+        var testUserService = new UserService(mockUserRepository, null);
 
         var exception = catchThrowable(() -> testUserService.findUser(-1));
 

@@ -19,4 +19,7 @@ public interface UserRepository {
     boolean existsByEmail(String email);
 
     Optional<User> findByEmailAndPassword(String email, String password);
+
+    Optional<User> findByEmail(String email);
+
 }
