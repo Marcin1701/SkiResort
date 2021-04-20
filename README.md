@@ -2,10 +2,12 @@
 https://github.com/Marcin1701/MarcinRogoz-ToDoApp
 
 # Ski_Resort
-Simple representation of Ski Resort.
+Service provides fully functional web application for managing ski resort.
 # Technologies
 Project is created with:
-* JAVA
-* Spring Framework
+* Java
+* Spring, Boot, Web, Security
+* Hibernate
+* Login with Google
 * Maven
 * Flyway
