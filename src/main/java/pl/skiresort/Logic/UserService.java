@@ -27,12 +27,7 @@ public class UserService {
     }
 
     public UserReadModel loginUser(UserWriteModel userWriteModel) {
-        // Password decryption
-        var entity = userRepository.findByEmail(userWriteModel.getEmail());
-        if (entity.isPresent() && passwordEncoder.matches(userWriteModel.getPassword(), entity.get().getPassword())){
-            return entity.map(UserReadModel::new).orElse(null);
-        }
-        return null;
+        return userRepository.findByEmail(userWriteModel.getEmail()).map(UserReadModel::new).get();
     }
 
     public UserReadModel findUserByEmail(String email) {
@@ -43,7 +38,9 @@ public class UserService {
     }
 
     public User findUser(int id) {
-        return userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User does not exist!"));
+        return userRepository.findById(id)
+                        .orElseThrow(
+                                () -> new UsernameNotFoundException("User does not exist!"));
     }
 
     public boolean addUserCardPass(int id, CardPass cardPass){

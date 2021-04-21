@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: 'jdbc:postgresql://localhost:5432/Ski_Resort'
+    url: 'jdbc:postgresql://localhost:5432/MyOwnSkiResort'
     username: 'postgres'
     password: 'root'
   jpa:

@@ -13,7 +13,7 @@ create table clients
 create table card_pass
 (
     id    serial  not null,
-    start date    not null,
-    end   date    not null,
+    start_date date    not null,
+    end_date   date    not null,
     level integer not null
 );

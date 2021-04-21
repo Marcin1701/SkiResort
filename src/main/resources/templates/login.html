@@ -11,6 +11,7 @@
     <h2>
         <a th:href="@{/oauth2/authorization/google}">Login with Google</a>
     </h2>
+    <br>
     <!--/*@thymesVar id="user" type="pl.skiresort.Model.Projection.UserWriteModel"*/-->
     <form method="post" action="#" th:action="@{/login}" th:object="${user}">
         <fieldset>

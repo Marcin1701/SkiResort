@@ -27,15 +27,14 @@ public class LoginController {
     }
 
     @GetMapping
-    String showLoginPage(@CookieValue(name="userId", defaultValue = "No cookie") String message, Model model) {
-        model.addAttribute("message", message);
+    String showLoginPage(Model model) {
         model.addAttribute("user", new UserWriteModel());
         return "login";
     }
 
     @Transactional
     @PostMapping
-    String loginUser(@ModelAttribute("users") UserWriteModel userWriteModel, Model model){
+    String loginUser(@ModelAttribute("user") UserWriteModel userWriteModel, Model model){
         var entity = userService.loginUser(userWriteModel);
         if (entity != null) {
             model.addAttribute("user", new UserReadModel(
