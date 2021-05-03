@@ -28,7 +28,7 @@ class UserServiceTest {
 
         var testUserService = new UserService(mockUserRepository, null);
 
-        var exception = catchThrowable(() -> testUserService.findUser(-1));
+        var exception = catchThrowable(() -> testUserService.findUserById(-1));
 
         assertThat(exception).isInstanceOf(UsernameNotFoundException.class);
     }

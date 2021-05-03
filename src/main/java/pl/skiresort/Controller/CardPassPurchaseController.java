@@ -26,7 +26,7 @@ public class CardPassPurchaseController {
 
     @GetMapping("/{id}")
     public String getCardPassPage(@PathVariable int id, Model model) {
-        model.addAttribute("user", userService.findUser(id));
+        model.addAttribute("user", userService.findUserById(id));
         model.addAttribute("card", new CardPassWriteModel());
         return "cardPassPurchase";
     }
@@ -41,7 +41,7 @@ public class CardPassPurchaseController {
         if (bindingResult.hasErrors()){
             return "cardPassPurchase";
         }
-       current.setUser(userService.findUser(id));
+       current.setUser(userService.findUserById(id));
        if (userService.addUserCardPass(id, current.toCardPass())) {
            return "cardPassInfo";
        }

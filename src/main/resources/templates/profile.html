@@ -31,6 +31,9 @@
                 <fieldset>
                     <legend><a th:href="@{'/cardPass/' + ${user.id}}">Card pass purchase</a></legend>
                 </fieldset>
+                <fieldset>
+                    <legend><a th:href="@{'/profile/generateQR/' + ${user.id}}">Generate QR Code</a></legend>
+                </fieldset>
     </fieldset>
     <fieldset th:if="${cardPass} != null">
         <fieldset>

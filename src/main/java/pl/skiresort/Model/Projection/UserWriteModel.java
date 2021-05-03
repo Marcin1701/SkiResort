@@ -6,6 +6,7 @@ import pl.skiresort.Model.User;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import java.util.UUID;
 
 // DTO
 public class UserWriteModel {
@@ -26,6 +27,8 @@ public class UserWriteModel {
     private String password;
 
     private CardPass cardPass;
+
+    private UUID generatedCode;
 
     public UserWriteModel() {
 
@@ -87,7 +90,17 @@ public class UserWriteModel {
         this.password = password;
     }
 
+    public UUID getGeneratedCode() {
+        return generatedCode;
+    }
+
+    public void setGeneratedCode(final UUID generatedCode) {
+        this.generatedCode = generatedCode;
+    }
+
     public User toUser() {
         return new User(name, surname, age, email, password);
     }
+
+
 }

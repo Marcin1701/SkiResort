@@ -3,6 +3,7 @@ package pl.skiresort.Model;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 
 @Entity
@@ -34,21 +35,24 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Provider provider;
 
+    private UUID generatedcode;
+
     public User() {
 
     }
 
     public User(String name, String surname, int age, String email, String password) {
-        this(name, surname, age, email, password, null);
+        this(name, surname, age, email, password, null, UUID.randomUUID());
     }
 
-    public User(String name, String surname, int age, String email, String password, CardPass cardPass) {
+    public User(String name, String surname, int age, String email, String password, CardPass cardPass, UUID generatedcode) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.email = email;
         this.cardPass = cardPass;
         this.password = password;
+        this.generatedcode = generatedcode;
     }
 
     public int getId() {
@@ -117,5 +121,13 @@ public class User {
 
     public void setProvider(final Provider provider) {
         this.provider = provider;
+    }
+
+    public UUID getGeneratedcode() {
+        return generatedcode;
+    }
+
+    public void setGeneratedcode(final UUID generatedcode) {
+        this.generatedcode = generatedcode;
     }
 }

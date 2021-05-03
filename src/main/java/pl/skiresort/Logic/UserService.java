@@ -37,7 +37,7 @@ public class UserService {
                                 ()-> new UsernameNotFoundException("User does not exist!")));
     }
 
-    public User findUser(int id) {
+    public User findUserById(int id) {
         return userRepository.findById(id)
                         .orElseThrow(
                                 () -> new UsernameNotFoundException("User does not exist!"));
@@ -66,6 +66,8 @@ public class UserService {
             );
         }
     }
+
+
 
     public UserReadModel save(final UserWriteModel user) {
         if (userRepository.existsByEmail(user.getEmail())) {

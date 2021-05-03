@@ -38,7 +38,7 @@ public class LoginController {
         var entity = userService.loginUser(userWriteModel);
         if (entity != null) {
             model.addAttribute("user", new UserReadModel(
-                    entity.getId(), entity.getName(), entity.getSurname(), entity.getAge(), entity.getEmail(), entity.getPassword()));
+                    entity.getId(), entity.getName(), entity.getSurname(), entity.getAge(), entity.getEmail(), entity.getPassword(), entity.getGeneratedcode()));
             ResponseCookie userCredentialsCookie = ResponseCookie.from("userId", String.valueOf(entity.getId()))
                     .maxAge(60)
                     .build();
