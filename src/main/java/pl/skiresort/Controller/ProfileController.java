@@ -1,26 +1,22 @@
 package pl.skiresort.Controller;
 
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import pl.skiresort.Logic.OAuth2UserService;
 import pl.skiresort.Logic.UserService;
 import pl.skiresort.Logic.ZxingQRGenerator;
 import pl.skiresort.Model.Projection.UserReadModel;
-import pl.skiresort.Model.Projection.UserWriteModel;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 
 @Controller
 @RequestMapping("/profile")
@@ -28,12 +24,25 @@ public class ProfileController {
 
     private final UserService userService;
 
-    ProfileController(final UserService userService) {
+    private final OAuth2AuthorizedClientService oAuth2AuthorizedClientService;
+
+    ProfileController(final UserService userService, final OAuth2AuthorizedClientService oAuth2AuthorizedClientService) {
         this.userService = userService;
+        this.oAuth2AuthorizedClientService = oAuth2AuthorizedClientService;
     }
 
-    @GetMapping
-    private String loginPage(Model model, @PathVariable final Integer userId) {
+    @GetMapping("/Oauth2")
+    private String loginPage(Model model, OAuth2AuthenticationToken token) {
+        OAuth2AuthorizedClient client = oAuth2AuthorizedClientService.loadAuthorizedClient(
+                token.getAuthorizedClientRegistrationId(),
+                token.getName()
+        );
+        model.addAttribute("user", userService.findUserByNameAndSurnameFormOneString(client.getPrincipalName()));
+        return "profile";
+    }
+
+    @GetMapping("/{userId}")
+    private String loginPage(Model model, @PathVariable("userId") Integer userId) {
         model.addAttribute("user", new UserReadModel(userService.findUserById(userId)));
         model.addAttribute("cardPass", userService.getUserCardPass(userId));
         return "profile";

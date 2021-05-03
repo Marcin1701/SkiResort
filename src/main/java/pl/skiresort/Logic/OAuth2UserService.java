@@ -9,6 +9,8 @@ import pl.skiresort.Model.Provider;
 import pl.skiresort.Model.User;
 import pl.skiresort.Model.UserRepository;
 
+import javax.servlet.http.HttpSession;
+
 @Service
 public class OAuth2UserService extends DefaultOAuth2UserService {
 

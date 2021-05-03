@@ -25,4 +25,7 @@ interface SQLUserRepository extends UserRepository, JpaRepository<User, Integer>
 
     @Override
     Optional<User> findByEmail(String email);
+
+    @Override
+    Optional<User> findByNameAndSurname(String name, String surname);
 }

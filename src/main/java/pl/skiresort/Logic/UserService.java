@@ -12,6 +12,8 @@ import pl.skiresort.Model.User;
 import pl.skiresort.Model.UserRepository;
 
 import javax.persistence.EntityExistsException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -24,6 +26,28 @@ public class UserService {
     UserService(final UserRepository userRepository, final PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    public UserReadModel findUserByNameAndSurnameFormOneString(String nameAndSurname) {
+        char[] nameAndSurnameArray = nameAndSurname.toCharArray();
+        boolean switchToSurname = false;
+        String name = "";
+        String surname = "";
+        for (int i = 0; i < nameAndSurname.length(); i++) {
+            if (nameAndSurnameArray[i] == ' ') {
+                switchToSurname = true;
+            }
+            else if (!switchToSurname) {
+                name = name.concat(String.valueOf(nameAndSurnameArray[i]));
+            }
+            else {
+                surname = surname.concat(String.valueOf(nameAndSurnameArray[i]));
+            }
+        }
+        return new UserReadModel(
+                userRepository.findByNameAndSurname(name, surname)
+                        .orElseThrow(
+                                ()-> new UsernameNotFoundException("User does not exist!")));
     }
 
     public UserReadModel loginUser(UserWriteModel userWriteModel) {

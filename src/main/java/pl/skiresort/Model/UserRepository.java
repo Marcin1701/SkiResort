@@ -22,4 +22,5 @@ public interface UserRepository {
 
     Optional<User> findByEmail(String email);
 
+    Optional<User> findByNameAndSurname(String name, String surname);
 }
